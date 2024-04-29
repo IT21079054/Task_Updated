@@ -98,9 +98,15 @@ const Footer = () => {
             <div className="border-l-8 border-blue-900 pl-3 my-6">
               <p className="text-[14px] font-bold">Connect us on</p>
               <div className="text-[20px] font-bold flex mt-2">
-                <FaFacebook className="mr-3" />
-                <FaInstagram className="mr-3" />
-                <FaYoutube className="mr-3" />
+                <a href="https://web.facebook.com/">
+                  <FaFacebook className="mr-3" />
+                </a>
+                <a href="https://www.instagram.com/">
+                  <FaInstagram className="mr-3" />
+                </a>
+                <a href="https://youtube.com/">
+                  <FaYoutube className="mr-3" />
+                </a>
               </div>
             </div>
           </div>

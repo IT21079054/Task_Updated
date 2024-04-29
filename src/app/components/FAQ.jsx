@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { IoIosArrowDown } from "react-icons/io";
 
 const FAQ_QUESTIONS = [
@@ -29,6 +29,18 @@ const FAQ_QUESTIONS = [
 ];
 
 const FAQ = () => {
+  const [selectedFaq, setSelectedFaq] = useState(null);
+  const [dropdownVisible, setDropdownVisible] = useState(false);
+
+  const handleButtonClick = () => {
+    setDropdownVisible(!dropdownVisible);
+  };
+
+  const handleSelectChange = (heading) => {
+    const cityDetails = FAQ_QUESTIONS.find((list) => list.heading === heading);
+    setSelectedFaq(cityDetails);
+    setDropdownVisible(false);
+  };
   return (
     <div className="w-[90%] mx-auto mt-12 md:mt-4">
       <h2 className="text-[28px] md:text-[22px] font-bold">Frequently asked questions</h2>
@@ -44,7 +56,26 @@ const FAQ = () => {
         ))}
       </div>
       <div className="text-center mt-4">
-        <button className="bg-blue-800 text-white py-3 px-12 text-[12px] rounded">More FAQ</button>
+        <button
+          onClick={handleButtonClick}
+          className="bg-blue-800 text-white py-3 px-12 text-[12px] rounded">
+          More FAQ
+        </button>
+        {dropdownVisible && (
+        <div className="relative">
+          <ul className="absolute bg-white border border-gray-200 shadow-md rounded mt-2 w-full">
+            {FAQ_QUESTIONS.map((item, i) => (
+              <li
+                key={i}
+                className="px-4 py-2 cursor-pointer hover:bg-gray-100"
+                onClick={() => handleSelectChange(item.heading)}
+              >
+                {item.heading}
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
       </div>
     </div>
   );
